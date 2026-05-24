@@ -25,3 +25,11 @@ jobs:
       env:
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    - name: Fail if quality gates fails
+      uses: sonarsource/sonarqube-quality-gate-action@v1
+      timeout-minutes: 4
+      with:
+        scanMetadataReportFile: target/sonar/report-task.txt
+      env:
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
